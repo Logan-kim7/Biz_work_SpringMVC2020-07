@@ -59,11 +59,9 @@
 		margin:5px;
 		padding:5px;
 	}
-
 	section#search-list div p b {
 		color:blue;
 	}
-
 	img {
 		float:left;
 		margin:10px;

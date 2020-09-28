@@ -9,7 +9,6 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <title>나의 홈페이지</title>
 <style>
-
 	nav#search-nav {
 		width:100%;
 		background-color: green;
@@ -59,11 +58,9 @@
 	section#search-list div:hover {
 		background-color: #BBB;
 	}
-
 	section#search-list div p b {
 		color:blue;
 	}
-
 	img {
 		float:left;
 		margin:10px;

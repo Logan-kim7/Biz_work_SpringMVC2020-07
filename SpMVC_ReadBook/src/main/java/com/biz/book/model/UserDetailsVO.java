@@ -6,8 +6,12 @@ import org.apache.ibatis.type.Alias;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 
 /*
@@ -17,6 +21,10 @@ import lombok.Setter;
 @Alias("UserDetail")
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class UserDetailsVO implements UserDetails{
 	
 	
@@ -38,20 +46,21 @@ public class UserDetailsVO implements UserDetails{
 	private String username;
 	private String password;
 	
-	private boolean isEnabled;
-	private boolean isAccountNonExpired;
-	private boolean isAccountNonLocked;
-	private boolean isCredentialsNonExpired;
+	private boolean enabled;
+	private boolean accountNonExpired;
+	private boolean accountNonLocked;
+	private boolean credentialsNonExpired;
 	
 	
 	// List<GrantedAuthority> 와 같은 문법 이고 Collection은 List 의 부모(상위객체)이다.
-	Collection<? extends GrantedAuthority> authorities;
+	private Collection<? extends GrantedAuthority> authorities;
 	
 	
 	// 프로젝트에서 필요한 별도의 필드변수 선언
-	private String email;
-	private String phone;
-	private String address;
+	private String m_name;
+	private String m_email;
+	private String m_tel;
+	private String m_address;
 	
 
 }

@@ -8,19 +8,45 @@
 	<select id="selectAll" resultType="UserDetail">
 		SELECT * FROM tbl_member
 	</select>
+	<!--  tbl_member table의 사용자 id와 비밀번호 칼럼의 이름과 -->
+	<!-- UserDetailsVO의 필드변수 이름이 다른 관계로 -->
+	<!-- SELECT 후에 자동으로 VO에 Setting이 안된다. -->
+	<!-- 이럴경우 SELECT SQL문에 projection을 적용하고  -->
+	<!-- 칼럼이름에 Alias 를 설정해 주어야 한다. -->
 	<select id="findById" resultType="UserDetail">
-		SELECT * FROM tbl_member WHERE m_userid = #{username}
+	SELECT
+			m_userid as username,
+			m_password as password,
+			m_name,
+			m_tel,
+			m_address,
+			m_roll,
+			enable,
+			m_email
+		 FROM tbl_member WHERE m_userid = #{username}
 	</select>
+	
 	<insert id="insert">
 		INSERT INTO tbl_member(
-			seq, title, link, image, author, price,
-			discount, publisher, isbn, description, pubdate,
-			buydate, buyprice, buystore
+			M_USERID,
+			M_PASSWORD,
+			M_NAME,
+			M_TEL,
+			M_ADDRESS,
+			M_ENABLE,
+			AccountNonExpired,
+			AccountNonLocked,
+			CredentialsNonExpired
+			
 		) VALUES (
 			SEQ_BOOKS.NEXTVAL,
-			#{title}, #{link}, #{image},#{author}, #{price},
-			#{discount}, #{publisher}, #{isbn}, #{description}, #{pubdate},
-			#{buydate}, #{buyprice}, #{buystore}
+			#{username},
+			#{password},
+			#{m_name},
+			#{m_tel},
+			#{m_address},
+			#{m_email},
+			'1','1','1','1'
 		)
 	</insert>
 	<update id="update"></update>
