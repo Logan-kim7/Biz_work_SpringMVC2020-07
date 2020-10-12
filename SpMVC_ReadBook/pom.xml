@@ -40,9 +40,8 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
-			<version>${org.spring-security-version}</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
-
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
 		<dependency>

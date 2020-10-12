@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.biz.book.mapper.BookDao;
 import com.biz.book.model.BookVO;
@@ -29,10 +27,12 @@ public class BooksController {
 
 	@Autowired
 	private BookDao bookDao;
-	@Transactional
+	
+	
 	// locatlhost:8080/book/books
 	// locatlhost:8080/book/books/
 	// @ResponseBody
+	@Transactional
 	@RequestMapping(value={"/",""},method=RequestMethod.GET)
 	public String list(Model model) {
 		
@@ -66,11 +66,9 @@ public class BooksController {
 	}
 	
 	/*
-	 * 
 	 * spring form taglib를 사용하여 write form을 만들었을 경우에는
 	 * VO 클래스, 객체를 매개변수로 사용할때
 	 * @ModelAttribute("VO") 를 필수로 사용하자
-	 * 
 	 */
 	@RequestMapping(value="/input",method=RequestMethod.POST)
 	public String input(@ModelAttribute("bookVO") BookVO bookVO) {
@@ -98,22 +96,25 @@ public class BooksController {
 		log.debug("PATH: {}",id );
 		long seq = Long.valueOf(id);
 		BookVO bookVO = bookDao.findById(seq);
-
 		model.addAttribute("BOOKVO",bookVO);
 		
 		LocalDateTime lDateTime = LocalDateTime.now();
+		String lDate = DateTimeFormatter
+					.ofPattern("yyyy-MM-dd")
+					.format(lDateTime);
+		String lTime = DateTimeFormatter
+					.ofPattern("HH:mm:SS")
+					.format(lDateTime);
 		
-		String lDate = DateTimeFormatter.ofPattern("yyy-MM-dd").format(lDateTime);
-		String lTime = DateTimeFormatter.ofPattern("HH:mm:SS").format(lDateTime);
-		
-		
-		ReadBookVO readBookVO = ReadBookVO.builder().r_date(lDate).r_stime(lTime).build();
-		
+		ReadBookVO readBookVO = ReadBookVO.builder()
+						.r_date(lDate)
+						.r_stime(lTime)
+						.build();
+		model.addAttribute("readBookVO",readBookVO);
 		model.addAttribute("BODY","BOOK-DETAIL");
 		return "home";
 		
 	}
-	
 }
 
 

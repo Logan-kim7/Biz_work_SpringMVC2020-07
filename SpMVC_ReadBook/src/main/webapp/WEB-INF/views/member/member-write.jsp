@@ -3,9 +3,10 @@
 <%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
 
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
-<link rel="stylesheet" type="text/css" href="${rootPath}/static/css/member-write.css?ver=2020-09-28" />
-
-<form:form modelAttribute="MEMBER_VO" id="member-write">
+<link rel="stylesheet" type="text/css" 
+			href="${rootPath}/static/css/member-write.css?ver=2020-09-28" />
+			
+<form:form modelAttribute="memberVO" id="member-write">
 	<fieldset>
 		<legend>회원가입</legend>
 		<div>
@@ -16,7 +17,8 @@
 		<div>
 			<label>비밀번호</label> 
 			<form:input path="password" type="password"/>
-			
+		</div>
+		<div>
 			<label>비밀번호 확인</label> 
 			<input name="re_password" id="re_password" type="password"/>
 		</div>
@@ -25,12 +27,12 @@
 			<form:input path="m_name" />
 		</div>
 		<div>
-			<label>전화번호</label> 
-			<form:input path="m_tel" />
-		</div>
-		<div>
 			<label>이메일</label> 
 			<form:input path="m_email" />
+		</div>
+		<div>
+			<label>전화번호</label> 
+			<form:input path="m_tel" />
 		</div>
 		<div>
 			<label>주소</label> 

@@ -51,11 +51,11 @@
 		background-color: #ccc;
 		padding:10px;
 	}
-	section#read-book-body{
-		width: 60%;
-		border: 1px solid green;
-		margin: 5px auto;
 	
+	section#read-book-body {
+		width:60%;
+		border:1px solid green;
+		margin:5px auto;
 	}
 	
 </style>
@@ -96,5 +96,7 @@
 </table>
 <section id="read-book-body">
 	<%@ include file="/WEB-INF/views/read-book/read-book-write.jsp" %>
-
 </section>
+
+
+
