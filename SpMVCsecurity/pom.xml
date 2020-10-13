@@ -12,6 +12,7 @@
 		<java-version>1.8</java-version>
 		<org.springframework-version>5.2.8.RELEASE</org.springframework-version>
 		<org.springsecurity-version>5.2.7.RELEASE</org.springsecurity-version>
+		<org.apache.tiles-version>3.0.8</org.apache.tiles-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.7.30</org.slf4j-version>
 	</properties>
@@ -93,6 +94,20 @@
 			<artifactId>lombok</artifactId>
 			<version>1.18.12</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-core -->
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-core</artifactId>
+			<version>${org.apache.tiles-version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-extras -->
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-extras</artifactId>
+			<version>${org.apache.tiles-version}</version>
 		</dependency>
 
 		<!-- @Inject -->
