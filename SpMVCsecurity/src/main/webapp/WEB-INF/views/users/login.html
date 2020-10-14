@@ -1,0 +1,50 @@
+
+<c:set var="rootPath" value="${pageContext.request.contextPath}" />
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>나의 홈페이지</title>
+    <style>
+       body {
+
+        display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    min-height: 100vh;
+	    background: #eceffc;    
+        }
+        section#login-body {
+        background-image: url("../static/image/cityjpg.jpg");
+        }
+        section#login-body{
+            display: flex;
+            width: 200px;
+            height: 600px;
+            text-align: center;
+            margin-top: 50px;
+
+
+        }
+        #title{
+            font-size: 50px;
+            text-align: center;
+            font-weight: bolder;    
+
+        }
+
+
+    </style>
+  </head>
+  <body>
+    <section id="login-body">
+      <form action="${rootPath}/login" method="POST">
+        <h2 id="title">LOG IN</h2>
+        <input id="id-input" name="username" placeholder="USER ID" />
+        <input id="pw-input" name="password" placeholder="PASSWORD" />
+        <button id="btn-login">로그인</button>
+      </form>
+    </section>
+  </body>
+</html>
