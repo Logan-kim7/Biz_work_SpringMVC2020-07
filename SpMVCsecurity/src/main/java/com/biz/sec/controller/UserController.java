@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/user")
 public class UserController {
 	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login() {
+		
+		return "/user/login";
+	}
+	
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String join() {
 		
@@ -16,19 +22,13 @@ public class UserController {
 		return "user/join";
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
-		
-		return "login";
-	}
-	
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage() {
 		// InternalView 를 사용한 rendering
 		// return "users/mypage" >> internalView를 사용한 rendering
 		// return "mypage" >> tiles의 mypage definition을 찾아 rendering
-		return "users/mypage"; //>> tiles의 user/* 찾고, * 대신 mypage문자열을 전달하여 rendring
+		return "user/mypage"; //>> tiles의 user/* 찾고, * 대신 mypage문자열을 전달하여 rendring
 		//1. tiles-layout.xml에서 user/mypage 설정 값을 찾아보기.
 		//2. tiles-layout.xml에서 user/* 설정값 찾아보기
 		// 1또는 2번에서 해당 설정을 찾게 되면 template로 설정된 layout.jsp을 열고

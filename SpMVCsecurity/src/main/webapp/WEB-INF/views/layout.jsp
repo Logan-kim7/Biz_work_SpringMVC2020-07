@@ -57,7 +57,7 @@
 	
 	*/
 		flex: 1;
-		// content box에 포함되는 내용이 넘치면 자동으로 scroll bar를 형성하라.
+		/* content box에 포함되는 내용이 넘치면 자동으로 scroll bar를 형성하라. */
 		overflow: auto;
 	}
 
@@ -101,7 +101,7 @@
 <body>
 	<tiles:insertAttribute name="header"/>
 	<tiles:insertAttribute name="menu"/>
-	<section id="content">
+	<section id="main-content">
 		<tiles:insertAttribute name="content"/>
 	</section>
 	<tiles:insertAttribute name="footer"/>

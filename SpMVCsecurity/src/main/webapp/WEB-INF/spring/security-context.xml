@@ -18,8 +18,7 @@
 		login-page="/user/login" 
 		username-parameter="username"
 		password-parameter="password"
-		login-processing-url="/login"
-		/>
+		login-processing-url="/login"/>
 		<sec:logout />
 	</sec:http>
 
