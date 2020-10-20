@@ -104,12 +104,14 @@ $(function(){
 		toolbar : toolbar
 	});
 	
-	
-			 
+	$("#list").click(function(){
+		document.location.href= "${rootPath}/bbs/list"
 	})
+	
+})
 
 </script>
-<form id="write-form" method="POST">
+<form id="write-form" method="POST" enctype="multipart/form-data">
 	<fieldset>
 		<legend>글쓰기</legend>
 	<div>
@@ -124,7 +126,7 @@ $(function(){
 	
 	<div>
 		<label>글쓴이</label>
-		<input name="b_write">
+		<input name="b_writer">
 	</div>
 	
 	<div>
@@ -135,6 +137,11 @@ $(function(){
 	<div>
 		<label></label>
 		<textarea id="b_content" rows="5" cols="20" name="b_content"></textarea>
+	</div>
+	
+	<div>
+		<label>이미지</label><input type="file" name="file" accept="image/*">
+		
 	</div>
 	
 	<div class="button-box">

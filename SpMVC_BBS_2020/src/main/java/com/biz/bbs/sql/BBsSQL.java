@@ -16,11 +16,12 @@ public class BBsSQL {
 		
 		SQL sql = new SQL();
 		sql.INSERT_INTO("tbl_bbs");
-		sql.INTO_COLUMNS("b_seq").INTO_VALUES("SEQ_BBS.NEXTVAL");
+		sql.INTO_COLUMNS("b_seq").INTO_VALUES("seq_bbs.NEXTVAL");
 		sql.INTO_COLUMNS("b_date").INTO_VALUES("#{b_date}");
 		sql.INTO_COLUMNS("b_time").INTO_VALUES("#{b_time}");
 		sql.INTO_COLUMNS("b_writer").INTO_VALUES("#{b_writer}");
 		sql.INTO_COLUMNS("b_subject").INTO_VALUES("#{b_subject}");
+		sql.INTO_COLUMNS("b_file").INTO_VALUES("#{b_file}");
 		sql.INTO_COLUMNS("b_content").INTO_VALUES("#{b_content}");
 		
 		return sql.toString();	

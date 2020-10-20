@@ -15,9 +15,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- include summernote css/js -->
 
-<link rel="stylesheet" href="${rootPath}/resources/summernote/summernote-bs4.min.css">
-<script src="${rootPath}/resources/summernote/summernote-bs4.min.js"></script>
-<script src="${rootPath}/resources/summernote/lang/summernote-ko-KR.min.js"></script>
+<link rel="stylesheet" href="${rootPath}/static/summernote/summernote-bs4.min.css">
+<script src="${rootPath}/static/summernote/summernote-bs4.min.js"></script>
+<script src="${rootPath}/static/summernote/lang/summernote-ko-KR.min.js"></script>
 
 <style>
 	*{
@@ -53,7 +53,7 @@
 	nav ul li{
 		display: inline-block;
 		margin: 0px 10px;   /* top+botton, left,right */
-		padding: 12px 16px;
+		padding: 6px 12px;
 		cursor: pointer;
 	}
 	
@@ -87,6 +87,7 @@
 	background-color: black;
 	color: white;
 	text-align: center;
+	padding:0.7rem;
 	}
 	
 
@@ -108,6 +109,7 @@
 	<section id="content">
 	<tiles:insertAttribute name="content" />
 	</section>
+	
 	<tiles:insertAttribute name="footer" />
 </body>
 </html>
