@@ -80,13 +80,29 @@ document.addEventListener("DOMContentLoaded", function(){
 	document.querySelector("section#bbs-button-box").addEventListener("click",function(e){
 		let url= "${rootPath}/bbs/${BBSVO.b_seq}/"
 		
+		/*
+			게시글 삭제를 요청하면(삭제버튼 클릭)
+			ajax 사용하여 서버에 DELETE method type으로 삭제를 요청하자
+		*/
+		
 		if(e.target.tagName ===('BUTTON')){	
 			if(e.target.className ===("delete")){
-				if(!confirm("정말 삭제할까요??")){
+				if(confirm("정말 삭제할까요??")){
+					
+				 	let data = {seq: "${BBSVO.b_seq}"}
+				 	fetch("${rootPath}/api/bbs",
+				 			
+				 			{ method :"DELETE",
+				 			  headers : {"Content-Type" : "application/json"},
+				 			//JSON 객체 데이터를 문자열화 하여 HTTP Body에 담기
+				 			body : JSON.stringify(data) 
+				 			}).then(function(result){alert("성공")})
+				 			  .catch(function(result){alert("실패")})
+				 	
 					return false;
 				}
+				document.location.href= url + e.target.className 	
 			}
-			document.location.href= url + e.target.className 		
 		}
 	})
 	
