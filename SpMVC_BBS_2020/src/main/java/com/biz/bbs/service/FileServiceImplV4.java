@@ -22,10 +22,24 @@ import lombok.extern.slf4j.Slf4j;
  * 
  */
 @Slf4j
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Service("fileServiceV4")
 public class FileServiceImplV4 extends FileServiceImplV1 {
-
+	/*
+	 * 필드(멤버)변수를 private final로 선언했을 경우
+	 * 보통 final로 선언된 변수는 선언과 동시에 생성(초기화)를 해야한다.
+	 * private final로 선언된 멤버변수는 
+	 * 클래스의 생성자 매서드에서 초기화 하는 것을 허용한다.
+	 * 
+	 * private final로 선언된 멤버변수는 
+	 * 반드시 클래스의 생성자 메서드에서 초기화를 해야 한다.
+	 */
+	private final String rootFolder;
+	public FileServiceImplV4() {
+		rootFolder="C:/bizwork/workspace/upload";
+		
+		
+	}
 	
 	@Override
 	public String fileUp(MultipartFile file) {
@@ -34,7 +48,6 @@ public class FileServiceImplV4 extends FileServiceImplV1 {
 		// 서버가 재가동 되면 업로드 된 이미지파일이 삭제 된다
 		// 서버가 재가동 되어도 이미지파일이 지워지지 않게 이미지파일이 저장될 주소값을 지정해놓고
 		// 폴더가 없으면 폴더를 생성해라 라는 코드 
-		String rootFolder="C:/bizwork/workspace/upload";
 		File dir = new File(rootFolder); 
 		if(!dir.exists()) {
 			dir.mkdirs(); 
@@ -73,8 +86,24 @@ public class FileServiceImplV4 extends FileServiceImplV1 {
 		
 		return saveFileName;
 	}
+	/*
+	 * 파일이름을 받아서 파일을 삭제 하는 역할을 할것임
+	 * 
+	 */
 	
-	
+	@Override
+	public boolean fileDelete(String b_file) {
+		// boolean 에 ret 변수를 false 로담고 
+		boolean ret = false;
+		// 파일을 삭제 헀을시
+		File deleteFile = new File(rootFolder,b_file);
+		// 만약 파일 삭제를성공하면 
+		if(deleteFile.exists()) {
+			//true를 반환
+			 ret = deleteFile.delete();
+		}
+		return ret;
+	}
 	
 	
 }

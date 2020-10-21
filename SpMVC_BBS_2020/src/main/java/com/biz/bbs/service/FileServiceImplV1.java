@@ -9,7 +9,10 @@ import java.io.IOException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import lombok.extern.slf4j.Slf4j;
 
+
+@Slf4j
 @Service("fileServiceV1")
 public class FileServiceImplV1 implements FileService {
 	
@@ -53,6 +56,13 @@ public class FileServiceImplV1 implements FileService {
 		}
 		
 		return null;
+	}
+
+	@Override
+	public boolean fileDelete(String b_file) {
+		
+		
+		return false;
 	}
 	
 	

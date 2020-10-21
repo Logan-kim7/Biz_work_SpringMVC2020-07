@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,9 +30,7 @@ public class BbsController {
 	@Qualifier("bbsServiceV1")
 	private BBsService bbsService;
 	
-	@Autowired
-	@Qualifier("fileServiceV4")
-	private FileService fileService;
+	
 	/*
 	 * 만약 return문에 bbs/list 문자열이 있으면
 	 * 1. tiles-layout.xml 에서 bbs/list로 설정된 항목을 검사
@@ -53,12 +52,12 @@ public class BbsController {
 		return "bbs/list";
 	}
 	
-	
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write() {
 		
 		return "bbs/write";
 	}
+	
 	/*
 	 * form에서 보낸 파일 받기 
 	 * MultipartFile 클래스를 매개변수로 설정하여 파일을 받기
@@ -70,18 +69,22 @@ public class BbsController {
 		
 		log.debug("업로드한 파일이름" + file.getOriginalFilename());
 		
-		//파일업로드후
-		String fileName = fileService.fileUp(file);
-		//VO에 파일을담고
-		bbsVO.setB_file(fileName);
+
 		// 파일 삽입
-		bbsService.insert(bbsVO);
+		bbsService.insert(bbsVO,file);
 		//bbsService.insert();
 		
 		
 		return "redirect:/bbs/list";
 	}
 	
+	
+//	@RequestMapping(value = "{seq}/list", method = RequestMethod.GET)
+//	public String list() {
+//		
+//		return "redirect:/bbs/list";
+//		
+//	}
 	
 	@RequestMapping(value = "/detail/{seq}", method = RequestMethod.GET)
 	public String detail(@PathVariable("seq") String seq, Model model) {
@@ -92,5 +95,29 @@ public class BbsController {
 		model.addAttribute("BBSVO", bbsVO);
 		return "bbs/detail";
 	}
-
+	
+	
+	@RequestMapping(value = "/{seq}/{url}", method = RequestMethod.GET)
+	public String update(@PathVariable("seq") String seq,@PathVariable("url")String url, Model model) {
+		long long_seq = Long.valueOf(seq);
+		String ret_url = "redirect:/bbs/list";
+		
+		if(url.equalsIgnoreCase("DELETE")) {
+			bbsService.delete(long_seq);
+		}else if(url.equalsIgnoreCase("UPDATE")){
+			//bbsService.delete(long_seq);
+			model.addAttribute("BBSVO",bbsService.findBySeq(long_seq));
+			ret_url = "/bbs/write";
+		}
+		
+		return ret_url;
+	}
+//	@RequestMapping(value = "/delet/{seq}", method = RequestMethod.GET)
+//	public String delete(@PathVariable("seq") String seq) {
+//		long long_seq = Long.valueOf(seq);
+//		
+//		//bbsService.delete(long_seq);
+//		
+//		return "redirect:/bbs/list";
+//	}
 }
