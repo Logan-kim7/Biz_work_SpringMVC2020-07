@@ -9,7 +9,7 @@ section#bbs-detail-header {
 	border: 1px solid blue;
 	margin: 20px auto;
 	display: flex;
-	box-shadow: 2px 2px 2px rgba(0,0,0,0.5)
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
 }
 section#bbs-detail-header article:first-child {
 	flex:1;	
@@ -20,7 +20,7 @@ section#bbs-detail-header article:last-child {
 section#bbs-detail-header div {
 	margin:5px;
 	padding:10px;
-	border-bottom: 1px solid #ddd
+	border-bottom: 1px solid #ddd;
 }
 section#bbs-detail-header .title{
 	display: inline-block;
@@ -36,12 +36,12 @@ section#bbs-detail-header .content{
 section#bbs-detail-header img {
 	margin:5px;
 	border-radius: 5px;
-	box-shadow: 2px 2px 2px rgba(0,0,0,0.5)
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
 }
 section#bbs-detail-body {
 	width:50%;
 	margin:10px auto;
-	box-shadow: 2px 2px 2px rgba(0,0,0,0.5)
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
 }
 
 
@@ -88,11 +88,15 @@ document.addEventListener("DOMContentLoaded", function(){
 		if(e.target.tagName ===('BUTTON')){	
 			if(e.target.className ===("delete")){
 				if(confirm("정말 삭제할까요??")){
+					/*seq 값을 담을 data라는 변수를 설정해주고 */
+				 	let data = {seq: "${BBSVO.b_seq}",
+								subject:"${BBSVO.b_subject}"
+												
 					
-				 	let data = {seq: "${BBSVO.b_seq}"}
+					}
 				 	fetch("${rootPath}/api/bbs",
 				 			
-				 			{ method :"DELETE",
+				 			{ method :"PUT",
 				 			  headers : {"Content-Type" : "application/json"},
 				 			//JSON 객체 데이터를 문자열화 하여 HTTP Body에 담기
 				 			body : JSON.stringify(data) 

@@ -119,6 +119,13 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.4</version>
 		</dependency>
+		<!-- spring 프로젝트에서 데이터를 보내거나 넣을때 필수로있어야하는 디펜던시 -->
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.11.3</version>
+		</dependency>
 
 
 		<!-- AspectJ -->
