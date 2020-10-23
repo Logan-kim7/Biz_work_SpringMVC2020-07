@@ -34,7 +34,14 @@ public class FileServiceImplV4 extends FileServiceImplV1 {
 	 * private final로 선언된 멤버변수는 
 	 * 반드시 클래스의 생성자 메서드에서 초기화를 해야 한다.
 	 */
-	private final String rootFolder;
+	
+	/*
+	 * private 으로 선언된 rootFolder 변수를
+	 * protected로 변경
+	 * protected로 선언된 변수들은 현재 클래스를 상속받은 
+	 * 클래스에서 그대로 사용이 가능하다.
+	 */
+	protected final String rootFolder;
 	public FileServiceImplV4() {
 		rootFolder="C:/bizwork/workspace/upload";
 		
@@ -44,12 +51,16 @@ public class FileServiceImplV4 extends FileServiceImplV1 {
 	@Override
 	public String fileUp(MultipartFile file) {
 		
-		
+		if(file == null) {
+			return null;
+		}
 		// 서버가 재가동 되면 업로드 된 이미지파일이 삭제 된다
 		// 서버가 재가동 되어도 이미지파일이 지워지지 않게 이미지파일이 저장될 주소값을 지정해놓고
 		// 폴더가 없으면 폴더를 생성해라 라는 코드 
 		File dir = new File(rootFolder); 
 		if(!dir.exists()) {
+			// mkdir(); 끝에 폴더1개만 추가해라
+			// mkdirs(); 모든경로의 폴더를 한꺼번에 생성
 			dir.mkdirs(); 
 		/*
 		 *  폴더주소가 통째로 없을때 mkdirs 를쓰고 ex)"C:/bizwork/workspace 이주소는 있고 upload 주소만 없으면 mkdir 만써도 생성이 가능하다

@@ -16,7 +16,11 @@ public class BBsSQL {
 		
 		SQL sql = new SQL();
 		sql.INSERT_INTO("tbl_bbs");
-		sql.INTO_COLUMNS("b_seq").INTO_VALUES("seq_bbs.NEXTVAL");
+		
+		//sql.INTO_COLUMNS("b_seq").INTO_VALUES("seq_bbs.NEXTVAL");
+		// 기존의 코드는 seq값을 생성해주는 코드
+		// 지금 활성화된 코드는 시퀀스를 외부로부터 받겠다라는 코드
+		sql.INTO_COLUMNS("b_seq").INTO_VALUES("#{b_seq}");
 		sql.INTO_COLUMNS("b_date").INTO_VALUES("#{b_date}");
 		sql.INTO_COLUMNS("b_time").INTO_VALUES("#{b_time}");
 		sql.INTO_COLUMNS("b_writer").INTO_VALUES("#{b_writer}");

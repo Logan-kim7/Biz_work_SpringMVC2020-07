@@ -21,7 +21,7 @@
 	
 	<filter>
 		<filter-name>FormFilter</filter-name>
-		<filter-class>org.springframework.web.filter.FormContentFilter.class</filter-class>
+		<filter-class>org.springframework.web.filter.FormContentFilter</filter-class>
 	</filter>
 	
 	<filter-mapping>
